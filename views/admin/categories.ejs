@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="utf-8" />
+  <title>Categories - NOVASOFT</title>
+  <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+<body class="admin">
+  <nav class="admin-nav">
+    <a href="/admin/dashboard">Dashboard</a>
+    <a href="/admin/games">Games</a>
+    <a href="/admin/categories">Categories</a>
+    <a href="/admin/codes">Access Codes</a>
+    <a href="/admin/logout">Logout</a>
+  </nav>
+
+  <main>
+    <h1>Categories</h1>
+    <form method="post" action="/admin/categories" class="admin-form">
+      <input name="name" placeholder="Category name" required />
+      <button class="btn" type="submit">Add Category</button>
+    </form>
+
+    <ul>
+      <% categories.forEach(c => { %>
+        <li><%= c.name %></li>
+      <% }) %>
+    </ul>
+  </main>
+</body>
+</html>

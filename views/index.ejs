@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="utf-8" />
+  <title>NOVASOFT - Games</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo animated-logo">NOVASOFT</div>
+
+    <!-- Admin link in header: clicks go to /admin (login) -->
+    <nav class="top-links">
+      <a class="admin-link" href="/admin" title="Admin Panel">Admin Panel</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Karibu NOVASOFT Games</h1>
+        <p>Cheza games nyingi — download baada ya kupata access code au free ikiwa hakuna password.</p>
+      </div>
+      <div class="slideshow" id="main-slideshow">
+        <!-- main animation slideshow using provided screenshots -->
+        <img src="https://i.postimg.cc/ZqkNg8Ry/IMG-20260622-WA0431.jpg" alt="ss1" class="active">
+        <img src="https://i.postimg.cc/7ZzGg5VG/IMG-20260622-WA0432.jpg" alt="ss2">
+        <img src="https://i.postimg.cc/m2vh2bsc/IMG-20260605-WA0506.jpg" alt="ss3">
+      </div>
+    </section>
+
+    <section class="games-list">
+      <h2>Games</h2>
+      <div class="grid">
+        <% if (games.length===0) { %>
+          <p>Hakuna game bado. Ingia admin kuupload.</p>
+        <% } %>
+        <% games.forEach(g => { %>
+        <div class="card">
+          <img src="<%= g.image || '/public/img/placeholder.png' %>" alt="<%= g.name %>">
+          <h3><%= g.name %></h3>
+          <p><%= (g.description||'') .slice(0,120) %>...</p>
+          <% if (g.requires_password) { %>
+            <a class="btn" href="/game/<%= g.id %>">Enter Access Code</a>
+            <a class="btn btn-wa" href="https://wa.me/255781259861?text=Nataka%20access%20code%20ya%20<%= encodeURIComponent(g.name) %>">Request via WhatsApp</a>
+          <% } else { %>
+            <a class="btn" href="/download/<%= g.id %>">Download Free</a>
+          <% } %>
+        </div>
+        <% }) %>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>©NOVASOFT</p>
+    <p><a class="admin-link" href="/admin">Admin Panel</a></p>
+  </footer>
+
+  <script src="/public/js/main.js"></script>
+</body>
+</html>

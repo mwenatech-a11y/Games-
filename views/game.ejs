@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="utf-8" />
+  <title><%= game.name %> - NOVASOFT</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo animated-logo">NOVASOFT</div>
+  </header>
+
+  <main class="game-page">
+    <section class="game-hero">
+      <div class="game-info">
+        <h1><%= game.name %></h1>
+        <p class="big-desc"><%= game.description %></p>
+
+        <% if (!game.requires_password) { %>
+          <a class="btn big" href="/download/<%= game.id %>">Download Free</a>
+        <% } else { %>
+          <form action="/download/<%= game.id %>" method="get" class="code-form">
+            <label>Ingiza Access Code:</label>
+            <input name="code" placeholder="ENTER ACCESS CODE" />
+            <button class="btn" type="submit">Enter</button>
+          </form>
+          <p>Au omba access code kwa admin kupitia WhatsApp:</p>
+          <a class="btn btn-wa" href="https://wa.me/255781259861?text=Nataka%20access%20code%20ya%20<%= encodeURIComponent(game.name) %>">Omba kupitia WhatsApp</a>
+        <% } %>
+      </div>
+
+      <div class="game-slideshow" id="game-slideshow">
+        <% screenshots.forEach((s, idx) => { %>
+          <img src="<%= s %>" class="<%= idx===0? 'active': '' %>" alt="shot<%= idx %>">
+        <% }) %>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>©NOVASOFT</p>
+  </footer>
+
+  <script src="/public/js/main.js"></script>
+</body>
+</html>

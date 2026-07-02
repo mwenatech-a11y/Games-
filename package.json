@@ -1,0 +1,17 @@
+{
+  "name": "novasoft-games",
+  "version": "1.0.0",
+  "description": "Games site with admin panel and access code gating",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^8.2.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "multer": "^1.4.5-lts.1",
+    "nanoid": "^4.0.0"
+  }
+}

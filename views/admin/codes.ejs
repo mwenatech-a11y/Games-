@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="utf-8" />
+  <title>Access Codes - NOVASOFT</title>
+  <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+<body class="admin">
+  <nav class="admin-nav">
+    <a href="/admin/dashboard">Dashboard</a>
+    <a href="/admin/games">Games</a>
+    <a href="/admin/categories">Categories</a>
+    <a href="/admin/codes">Access Codes</a>
+    <a href="/admin/logout">Logout</a>
+  </nav>
+
+  <main>
+    <h1>Access Codes</h1>
+    <form method="post" action="/admin/codes" class="admin-form">
+      <label>Generate code for game:</label>
+      <select name="game_id" required>
+        <% games.forEach(g => { %>
+          <option value="<%= g.id %>"><%= g.name %></option>
+        <% }) %>
+      </select>
+      <button class="btn" type="submit">Generate Code</button>
+    </form>
+
+    <h2>All Codes</h2>
+    <table class="codes-table">
+      <thead><tr><th>ID</th><th>Game</th><th>Code</th><th>Created</th><th>Action</th></tr></thead>
+      <tbody>
+        <% codes.forEach(c => { %>
+          <tr>
+            <td><%= c.id %></td>
+            <td><%= c.game_name || '—' %></td>
+            <td><%= c.code %></td>
+            <td><%= c.created_at %></td>
+            <td>
+              <form method="post" action="/admin/codes/delete" style="display:inline">
+                <input type="hidden" name="id" value="<%= c.id %>" />
+                <button class="btn" type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>

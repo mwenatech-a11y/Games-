@@ -1,0 +1,59 @@
+/* Basic styles and animations */
+:root{
+  --accent:#ff3b3b;
+  --bg:#0b0b0f;
+  --card:#111217;
+  --text:#e6e6e6;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:var(--text);background:linear-gradient(180deg,#05050a 0%, #0b1020 100%);min-height:100vh}
+.site-header{padding:18px 24px;display:flex;align-items:center;justify-content:flex-start}
+.logo{font-weight:800;font-size:26px;letter-spacing:2px;color:var(--accent)}
+.animated-logo{animation:logo-pop 2s infinite ease-in-out}
+@keyframes logo-pop{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
+
+.hero{display:flex;gap:24px;padding:24px;align-items:center;justify-content:space-between}
+.hero-content{max-width:50%}
+.slideshow, .game-slideshow{width:420px;height:300px;position:relative;overflow:hidden;border-radius:12px;border:4px solid rgba(255,255,255,0.03)}
+.slideshow img, .game-slideshow img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease}
+.slideshow img.active, .game-slideshow img.active{opacity:1}
+.games-list{padding:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:var(--card);padding:12px;border-radius:10px;box-shadow:0 6px 30px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,0.02)}
+.card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+.btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;margin-top:8px}
+.btn-wa{background:#25D366}
+footer{padding:16px;text-align:center;color:#999}
+
+/* admin */
+.admin-nav{display:flex;gap:12px;padding:12px;background:#060609}
+.admin-form{display:flex;flex-direction:column;gap:8px;max-width:720px;padding:12px}
+.admin-form input, .admin-form textarea, .admin-form select{padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:#0b0b0f;color:var(--text)}
+
+/* code form and large description */
+.big-desc{font-size:18px;line-height:1.4;margin-bottom:12px}
+.code-form{display:flex;gap:8px;align-items:center}
+.code-form input{padding:10px;border-radius:8px;width:240px;background:#0c0c0f;border:1px solid #222;color:var(--text)}
+
+/* table */
+.codes-table{width:100%;border-collapse:collapse}
+.codes-table th, .codes-table td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.03)}
+
+/* (append these rules to the existing stylesheet) */
+
+.site-header{padding:18px 24px;display:flex;align-items:center;justify-content:flex-start;gap:12px}
+.top-links{margin-left:auto}
+.top-links .admin-link,
+footer .admin-link{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:8px;
+  background:rgba(255,255,255,0.04);
+  color:var(--text);
+  text-decoration:none;
+  font-size:14px;
+  border:1px solid rgba(255,255,255,0.03);
+  transition:transform .15s ease, background .15s ease;
+}
+.top-links .admin-link:hover,
+footer .admin-link:hover{ transform:translateY(-2px); background:rgba(255,255,255,0.06) }

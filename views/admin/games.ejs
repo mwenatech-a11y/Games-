@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin Games - NOVASOFT</title>
+  <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+<body class="admin">
+  <nav class="admin-nav">
+    <a href="/admin/dashboard">Dashboard</a>
+    <a href="/admin/games">Games</a>
+    <a href="/admin/categories">Categories</a>
+    <a href="/admin/codes">Access Codes</a>
+    <a href="/admin/logout">Logout</a>
+  </nav>
+
+  <main>
+    <h1>Upload Game</h1>
+    <form action="/admin/games" method="post" enctype="multipart/form-data" class="admin-form">
+      <input name="name" placeholder="Game Name" required />
+      <textarea name="description" placeholder="Description"></textarea>
+      <input name="image_url" placeholder="Image URL (optional)" />
+      <label>Or upload image file:</label>
+      <input type="file" name="image" accept="image/*" />
+      <input name="download_link" placeholder="Download link (URL)" required />
+      <select name="category_id">
+        <option value="">--Select category--</option>
+        <% categories.forEach(c => { %>
+          <option value="<%= c.id %>"><%= c.name %></option>
+        <% }) %>
+      </select>
+      <label><input type="checkbox" name="requires_password" /> Requires access code</label>
+      <button class="btn" type="submit">Upload</button>
+    </form>
+
+    <h2>Existing Games</h2>
+    <ul>
+      <% games.forEach(g => { %>
+        <li><%= g.name %> - <%= g.requires_password ? 'Passworded' : 'No password' %></li>
+      <% }) %>
+    </ul>
+  </main>
+</body>
+</html>
